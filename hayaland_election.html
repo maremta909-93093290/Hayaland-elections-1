@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hayaland General Election 2026 — Official Results</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+  --hssr: #1D9E75;
+  --hssr-dark: #085041;
+  --hssr-light: #E1F5EE;
+  --hpu: #534AB7;
+  --hpu-light: #EEEDFE;
+  --imif: #D85A30;
+  --imif-light: #FAECE7;
+  --hcp: #BA7517;
+  --hcp-light: #FAEEDA;
+  --nota: #888780;
+  --bg: #0a0f0d;
+  --bg2: #111a16;
+  --bg3: #162019;
+  --border: rgba(29,158,117,0.15);
+  --text: #e8f0ec;
+  --text2: #8aab98;
+  --gold: #d4a843;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(29,158,117,0.18) 0%, transparent 70%),
+              radial-gradient(ellipse 40% 30% at 20% 80%, rgba(29,158,117,0.08) 0%, transparent 60%);
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(29,158,117,0.04) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(29,158,117,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.ticker {
+  position: absolute; top: 0; left: 0; right: 0;
+  background: var(--hssr);
+  color: var(--hssr-dark);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  padding: 6px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.ticker-inner {
+  display: inline-block;
+  animation: ticker 28s linear infinite;
+}
+@keyframes ticker {
+  0% { transform: translateX(100vw); }
+  100% { transform: translateX(-100%); }
+}
+.winner-crown {
+  font-size: 56px;
+  margin-bottom: 1rem;
+  animation: float 3s ease-in-out infinite;
+  display: block;
+}
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.hero-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--hssr);
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 900;
+  line-height: 1.0;
+  color: var(--hssr);
+  text-shadow: 0 0 80px rgba(29,158,117,0.4);
+  margin-bottom: 0.5rem;
+  animation: glow-in 1.2s ease both;
+}
+@keyframes glow-in {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: none; }
+}
+.hero-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  color: var(--text2);
+  margin-bottom: 2rem;
+  animation: glow-in 1.2s 0.2s ease both;
+}
+.hero-stat-row {
+  display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center;
+  margin-bottom: 2.5rem;
+  animation: glow-in 1.2s 0.4s ease both;
+}
+.hero-stat { text-align: center; }
+.hero-stat .val {
+  font-size: 2.2rem; font-weight: 300; color: var(--hssr);
+  font-family: 'Playfair Display', serif;
+}
+.hero-stat .lbl { font-size: 11px; color: var(--text2); letter-spacing: 0.08em; text-transform: uppercase; }
+.scroll-hint {
+  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  color: var(--text2); font-size: 12px; letter-spacing: 0.1em;
+  animation: bounce 2s ease-in-out infinite;
+}
+@keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+
+/* ── SECTION SHELL ── */
+.section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+}
+.section-eyebrow {
+  font-size: 10px; letter-spacing: 0.2em; color: var(--hssr);
+  text-transform: uppercase; font-weight: 500; margin-bottom: 0.5rem;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  color: var(--text);
+  margin-bottom: 2.5rem;
+}
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0;
+}
+
+/* ── WINNER BANNER ── */
+.winner-banner {
+  background: linear-gradient(135deg, var(--bg3) 0%, rgba(29,158,117,0.12) 100%);
+  border: 1px solid rgba(29,158,117,0.4);
+  border-radius: 20px;
+  padding: 2.5rem 3rem;
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  margin-bottom: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.winner-banner::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--hssr), transparent);
+}
+.winner-badge {
+  width: 90px; height: 90px; border-radius: 50%;
+  background: var(--hssr);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem; font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 0 30px rgba(29,158,117,0.5);
+}
+.winner-banner h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem; color: var(--hssr);
+  margin-bottom: 0.25rem;
+}
+.winner-banner p { color: var(--text2); font-size: 0.95rem; line-height: 1.6; }
+.majority-tag {
+  display: inline-block;
+  background: var(--hssr);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-top: 8px;
+}
+
+/* ── PARTY CARDS ── */
+.party-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 3rem;
+}
+.party-card {
+  background: var(--bg2);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.party-card:hover { transform: translateY(-3px); }
+.party-card.winner {
+  border-color: rgba(29,158,117,0.5);
+  background: linear-gradient(135deg, var(--bg3), rgba(29,158,117,0.08));
+}
+.party-card.winner::after {
+  content: '🏆 WINNER';
+  position: absolute; top: 12px; right: 12px;
+  font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
+  background: var(--hssr); color: #fff;
+  padding: 3px 8px; border-radius: 4px;
+}
+.party-abbr {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem; font-weight: 700;
+  margin-bottom: 4px;
+}
+.party-fullname { font-size: 12px; color: var(--text2); margin-bottom: 1rem; line-height: 1.4; }
+.party-votes-big { font-size: 1.7rem; font-weight: 300; margin-bottom: 2px; }
+.party-meta { font-size: 12px; color: var(--text2); margin-bottom: 1rem; }
+.bar-track {
+  height: 4px; background: rgba(255,255,255,0.07); border-radius: 2px; margin-bottom: 6px;
+}
+.bar-fill { height: 4px; border-radius: 2px; }
+.seat-tag {
+  display: inline-block;
+  font-size: 12px; font-weight: 500;
+  padding: 3px 10px; border-radius: 20px;
+}
+
+/* ── SEATS VIZ ── */
+.seats-viz {
+  background: var(--bg2);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 20px;
+  padding: 2rem 2.5rem;
+  margin-bottom: 3rem;
+}
+.seats-viz h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 1.5rem; color: var(--text); }
+.seat-bar {
+  display: flex; height: 48px; border-radius: 8px; overflow: hidden;
+  margin-bottom: 1rem;
+}
+.seat-seg {
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 500; color: #fff;
+  transition: flex 0.8s ease;
+}
+.majority-line {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+.majority-line::before {
+  content: '◆ Majority (5 seats)';
+  position: absolute; left: 62.5%; top: -20px;
+  font-size: 10px; color: var(--text2);
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+.majority-line::after {
+  content: '';
+  position: absolute; left: 62.5%; top: 0; bottom: 0;
+  width: 1px; background: rgba(255,255,255,0.3);
+}
+.seats-legend {
+  display: flex; flex-wrap: wrap; gap: 16px; font-size: 12px; color: var(--text2);
+}
+.seats-legend span { display: flex; align-items: center; gap: 6px; }
+.sleg-dot { width: 10px; height: 10px; border-radius: 2px; }
+
+/* ── MAP ── */
+.map-wrap {
+  background: var(--bg2);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-bottom: 3rem;
+  overflow: hidden;
+}
+.map-wrap h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 1.5rem; color: var(--text); }
+svg.map { width: 100%; max-width: 700px; display: block; margin: 0 auto; }
+.map-legend {
+  display: flex; flex-wrap: wrap; gap: 16px; margin-top: 1.25rem; font-size: 12px; color: var(--text2);
+}
+.map-legend span { display: flex; align-items: center; gap: 6px; }
+.ldot { width: 10px; height: 10px; border-radius: 50%; }
+
+/* ── TABLE ── */
+.results-table {
+  width: 100%; border-collapse: collapse;
+  font-size: 14px;
+}
+.results-table th {
+  text-align: left; padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text2); font-weight: 400; font-size: 11px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+.results-table td {
+  padding: 12px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: var(--text);
+  font-size: 13px;
+}
+.results-table tr:last-child td { border-bottom: none; font-weight: 500; }
+.wpill {
+  display: inline-block;
+  font-size: 11px; font-weight: 500;
+  padding: 3px 10px; border-radius: 10px;
+}
+
+/* ── NOTA ── */
+.nota-box {
+  background: var(--bg3);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin-top: 1.5rem;
+  font-size: 13px; color: var(--text2); line-height: 1.7;
+}
+.nota-box strong { color: var(--text); }
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border);
+  text-align: center;
+  padding: 2.5rem;
+  font-size: 12px; color: var(--text2); letter-spacing: 0.06em;
+}
+footer strong { color: var(--hssr); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+  .winner-banner { flex-direction: column; text-align: center; padding: 1.5rem; }
+  .hero-stat-row { gap: 1rem; }
+  .hero-stat .val { font-size: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker">
+  <span class="ticker-inner">
+    ★ BREAKING: HSSR WINS HAYALAND GENERAL ELECTION 2026 — 5 SEATS SECURED — MAJORITY GOVERNMENT FORMED &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    ★ HAYALAND SOCIAL & SOCIALIST REPUBLIC PARTY CLAIMS VICTORY WITH 42,850 VOTES &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    ★ HPU CONCEDES DEFEAT — HSSR PM-ELECT TO ADDRESS NATION &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    ★ VOTER TURNOUT: 71.2% — HIGHEST IN HAYALAND HISTORY &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    ★ NOTA: 3,820 VOTES CAST ACROSS 8 CONSTITUENCIES &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <span class="winner-crown" role="img" aria-label="crown">👑</span>
+  <p class="hero-eyebrow">Hayaland General Election 2026 — Official Results</p>
+  <h1 class="hero-title">HSSR Wins</h1>
+  <p class="hero-subtitle">Hayaland Social &amp; Socialist Republic</p>
+  <div class="hero-stat-row">
+    <div class="hero-stat"><div class="val">42,850</div><div class="lbl">Total votes</div></div>
+    <div class="hero-stat"><div class="val">5</div><div class="lbl">Seats won</div></div>
+    <div class="hero-stat"><div class="val">34.5%</div><div class="lbl">Vote share</div></div>
+    <div class="hero-stat"><div class="val">1,24,380</div><div class="lbl">Votes cast</div></div>
+  </div>
+  <p class="scroll-hint">▼ scroll for full results</p>
+</section>
+
+<hr class="divider">
+
+<!-- PARTIES SECTION -->
+<section class="section">
+  <p class="section-eyebrow">All parties</p>
+  <h2 class="section-title">Vote totals &amp; seat count</h2>
+
+  <!-- WINNER BANNER -->
+  <div class="winner-banner">
+    <div class="winner-badge">HSSR</div>
+    <div>
+      <h2>Hayaland Social &amp; Socialist Republic</h2>
+      <p>HSSR has secured an outright majority with 5 of 8 seats and 42,850 votes — the largest mandate in Hayaland's democratic history. Party leader will be sworn in as Prime Minister.</p>
+      <span class="majority-tag">★ Majority Government — 5 / 8 seats</span>
+    </div>
+  </div>
+
+  <!-- PARTY CARDS -->
+  <div class="party-grid">
+    <!-- HSSR -->
+    <div class="party-card winner">
+      <div class="party-abbr" style="color:var(--hssr);">HSSR</div>
+      <div class="party-fullname">Hayaland Social &amp; Socialist Republic</div>
+      <div class="party-votes-big" style="color:var(--hssr);">42,850</div>
+      <div class="party-meta">34.5% · 5 seats</div>
+      <div class="bar-track"><div class="bar-fill" style="background:var(--hssr);width:69%;"></div></div>
+      <span class="seat-tag" style="background:rgba(29,158,117,0.15);color:var(--hssr);">5 seats ★</span>
+    </div>
+    <!-- HPU -->
+    <div class="party-card">
+      <div class="party-abbr" style="color:var(--hpu);">HPU</div>
+      <div class="party-fullname">Hayaland People's Union</div>
+      <div class="party-votes-big" style="color:var(--hpu);">32,140</div>
+      <div class="party-meta">25.8% · 2 seats</div>
+      <div class="bar-track"><div class="bar-fill" style="background:var(--hpu);width:51%;"></div></div>
+      <span class="seat-tag" style="background:rgba(83,74,183,0.15);color:var(--hpu);">2 seats</span>
+    </div>
+    <!-- IMIF -->
+    <div class="party-card">
+      <div class="party-abbr" style="color:var(--imif);">IMIF</div>
+      <div class="party-fullname">Independence Movement &amp; Integrity Front</div>
+      <div class="party-votes-big" style="color:var(--imif);">26,470</div>
+      <div class="party-meta">21.3% · 1 seat</div>
+      <div class="bar-track"><div class="bar-fill" style="background:var(--imif);width:41%;"></div></div>
+      <span class="seat-tag" style="background:rgba(216,90,48,0.15);color:var(--imif);">1 seat</span>
+    </div>
+    <!-- HCP -->
+    <div class="party-card">
+      <div class="party-abbr" style="color:var(--hcp);">HCP</div>
+      <div class="party-fullname">Hayaland Conservative Party</div>
+      <div class="party-votes-big" style="color:var(--hcp);">19,100</div>
+      <div class="party-meta">15.4% · 0 seats</div>
+      <div class="bar-track"><div class="bar-fill" style="background:var(--hcp);width:30%;"></div></div>
+      <span class="seat-tag" style="background:rgba(186,117,23,0.15);color:var(--hcp);">0 seats</span>
+    </div>
+    <!-- NOTA -->
+    <div class="party-card">
+      <div class="party-abbr" style="color:var(--nota);">NOTA</div>
+      <div class="party-fullname">None of the Above</div>
+      <div class="party-votes-big" style="color:var(--nota);">3,820</div>
+      <div class="party-meta">3.1% · not applicable</div>
+      <div class="bar-track"><div class="bar-fill" style="background:var(--nota);width:6%;"></div></div>
+      <span class="seat-tag" style="background:rgba(136,135,128,0.15);color:var(--nota);">N/A</span>
+    </div>
+  </div>
+
+  <!-- SEAT BAR -->
+  <div class="seats-viz">
+    <h3>Seat distribution — 8 total</h3>
+    <div class="majority-line">
+      <div class="seat-bar">
+        <div class="seat-seg" style="flex:5;background:var(--hssr);">HSSR · 5</div>
+        <div class="seat-seg" style="flex:2;background:var(--hpu);">HPU · 2</div>
+        <div class="seat-seg" style="flex:1;background:var(--imif);">IMIF · 1</div>
+      </div>
+    </div>
+    <div class="seats-legend">
+      <span><span class="sleg-dot" style="background:var(--hssr);"></span>HSSR 5</span>
+      <span><span class="sleg-dot" style="background:var(--hpu);"></span>HPU 2</span>
+      <span><span class="sleg-dot" style="background:var(--imif);"></span>IMIF 1</span>
+      <span><span class="sleg-dot" style="background:var(--hcp);"></span>HCP 0</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- MAP SECTION -->
+<section class="section">
+  <p class="section-eyebrow">Geography</p>
+  <h2 class="section-title">Constituency map — Hayaland</h2>
+
+  <div class="map-wrap">
+    <h3>8 Constituencies — coloured by winner</h3>
+    <svg class="map" viewBox="0 0 700 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hayaland constituency map showing HSSR winning 5 of 8 seats">
+      <title>Hayaland constituency map</title>
+      <desc>8 constituencies coloured by winner: HSSR green wins 5, HPU purple wins 2, IMIF coral wins 1</desc>
+
+      <!-- North West — HSSR -->
+      <polygon points="60,40 250,40 250,180 120,180 60,120" fill="#1D9E75" stroke="#0a0f0d" stroke-width="2"/>
+      <text x="148" y="102" text-anchor="middle" font-size="14" font-weight="700" fill="#E1F5EE" font-family="'Playfair Display',serif">North West</text>
+      <text x="148" y="120" text-anchor="middle" font-size="11" fill="#9FE1CB" font-family="'DM Sans',sans-serif">HSSR ✓</text>
+
+      <!-- North East — HSSR -->
+      <polygon points="250,40 600,40 600,180 250,180" fill="#1D9E75" stroke="#0a0f0d" stroke-width="2"/>
+      <text x="415" y="102" text-anchor="middle" font-size="14" font-weight="700" fill="#E1F5EE" font-family="'Playfair Display',serif">North East</text>
+      <text x="415" y="120" text-anchor="middle" font-size="11" fill="#9FE1CB" font-family="'DM Sans',sans-serif">HSSR ✓</text>
+
+      <!-- Far North — HPU -->
+      <polygon points="600,40 670,40 670,150 600,180" fill="#534AB7" stroke="#0a0f0d" stroke-width="2"/>
+      <text x="635" y="100" text-anchor="middle" font-size="10" font-weight="700" fill="#EEEDFE" font-family="'DM Sans',sans-serif">Far N.</text>
+      <text x="635" y="115" text-anchor="middle" font-size="9" fill="#AFA9EC" font-family="'DM Sans',sans-serif">HPU</text>
+
+      <!-- Central West — IMIF -->
+      <polygon points="60,120 120,180 120,290 60,290" fill="#D85A30" stroke="#0a0f0d" stroke-width="2"/>
+      <text x="90" y="228" text-anchor="middle" font-size="10" font-weight="700" fill="#FAECE7" font-family="'DM Sans',sans-serif">Cntrl W</text>
+      <text x="90" y="243" text-anchor="middle" font-size="9" fill="#F0997B" font-family="'DM Sans',sans-serif">IMIF ✓</text>
+
+      <!-- Central — HSSR -->
+      <polygon points="120,180 380,180 380,310 120,310 120,290" fill="#1D9E75" stroke="#0a0f0d" stroke-width="2"/>
+      <text x="248" y="248" text-anchor="middle" font-size="14" font-weight="700" fill="#E1F5EE" font-family="'Playfair Display',serif">Central</text>
+      <text x="248" y="266" text-anchor="middle" font-size="11" fill="#9FE1CB" font-family="'DM Sans',sans-serif">HSSR ✓</text>
+
+      <!-- East — HSSR -->
+      <polygon points="380,180 670,180 670,310 380,310" fill="#1D9E75" stroke="#0a0f0d" stroke-width="2"/>
+      <text x="520" y="248" text-anchor="middle" font-size="14" font-weight="700" fill="#E1F5EE" font-family="'Playfair Display',serif">East</text>
+      <text x="520" y="266" text-anchor="middle" font-size="11" fill="#9FE1CB" font-family="'DM Sans',sans-serif">HSSR ✓</text>
+
+      <!-- South West — HPU -->
+      <polygon points="60,290 120,290 220,430 60,430" fill="#534AB7" stroke="#0a0f0d" stroke-width="2"/>
+      <text x="122" y="368" text-anchor="middle" font-size="11" font-weight="700" fill="#EEEDFE" font-family="'DM Sans',sans-serif">South W</text>
+      <text x="122" y="384" text-anchor="middle" font-size="10" fill="#AFA9EC" font-family="'DM Sans',sans-serif">HPU ✓</text>
+
+      <!-- South — HSSR -->
+      <polygon points="220,430 120,310 380,310 670,310 670,430" fill="#1D9E75" stroke="#0a0f0d" stroke-width="2"/>
+      <text x="435" y="375" text-anchor="middle" font-size="14" font-weight="700" fill="#E1F5EE" font-family="'Playfair Display',serif">South</text>
+      <text x="435" y="393" text-anchor="middle" font-size="11" fill="#9FE1CB" font-family="'DM Sans',sans-serif">HSSR ✓</text>
+
+      <!-- Candidate markers -->
+      <circle cx="148" cy="142" r="8" fill="#fff" stroke="#1D9E75" stroke-width="2"/>
+      <circle cx="415" cy="70" r="8" fill="#fff" stroke="#1D9E75" stroke-width="2"/>
+      <circle cx="635" cy="70" r="8" fill="#fff" stroke="#534AB7" stroke-width="2"/>
+      <circle cx="90" cy="260" r="8" fill="#fff" stroke="#D85A30" stroke-width="2"/>
+      <circle cx="248" cy="218" r="8" fill="#fff" stroke="#1D9E75" stroke-width="2"/>
+      <circle cx="520" cy="220" r="8" fill="#fff" stroke="#1D9E75" stroke-width="2"/>
+      <circle cx="120" cy="358" r="8" fill="#fff" stroke="#534AB7" stroke-width="2"/>
+      <circle cx="440" cy="348" r="8" fill="#fff" stroke="#1D9E75" stroke-width="2"/>
+    </svg>
+
+    <div class="map-legend">
+      <span><span class="ldot" style="background:#1D9E75;"></span>HSSR (5 seats)</span>
+      <span><span class="ldot" style="background:#534AB7;"></span>HPU (2 seats)</span>
+      <span><span class="ldot" style="background:#D85A30;"></span>IMIF (1 seat)</span>
+      <span><span class="ldot" style="background:#BA7517;"></span>HCP (0 seats)</span>
+      <span>○ = candidate marker</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- FULL RESULTS TABLE -->
+<section class="section">
+  <p class="section-eyebrow">Detailed breakdown</p>
+  <h2 class="section-title">Constituency-wise results</h2>
+  <div style="overflow-x:auto;">
+  <table class="results-table">
+    <thead>
+      <tr>
+        <th>Constituency</th>
+        <th style="color:#1D9E75;">HSSR</th>
+        <th style="color:#534AB7;">HPU</th>
+        <th style="color:#D85A30;">IMIF</th>
+        <th style="color:#BA7517;">HCP</th>
+        <th style="color:#888780;">NOTA</th>
+        <th>Winner</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>North West</td>
+        <td style="color:#1D9E75;font-weight:500;">6,820</td><td>4,150</td><td>3,410</td><td>2,100</td><td>380</td>
+        <td><span class="wpill" style="background:rgba(29,158,117,0.15);color:#1D9E75;">HSSR</span></td>
+      </tr>
+      <tr>
+        <td>North East</td>
+        <td style="color:#1D9E75;font-weight:500;">7,340</td><td>4,100</td><td>3,980</td><td>2,610</td><td>490</td>
+        <td><span class="wpill" style="background:rgba(29,158,117,0.15);color:#1D9E75;">HSSR</span></td>
+      </tr>
+      <tr>
+        <td>Far North</td>
+        <td>3,800</td><td style="color:#534AB7;font-weight:500;">5,200</td><td>2,630</td><td>1,820</td><td>310</td>
+        <td><span class="wpill" style="background:rgba(83,74,183,0.15);color:#534AB7;">HPU</span></td>
+      </tr>
+      <tr>
+        <td>Central West</td>
+        <td>3,100</td><td>3,050</td><td style="color:#D85A30;font-weight:500;">4,880</td><td>2,000</td><td>410</td>
+        <td><span class="wpill" style="background:rgba(216,90,48,0.15);color:#D85A30;">IMIF</span></td>
+      </tr>
+      <tr>
+        <td>Central</td>
+        <td style="color:#1D9E75;font-weight:500;">8,100</td><td>5,100</td><td>3,720</td><td>2,580</td><td>500</td>
+        <td><span class="wpill" style="background:rgba(29,158,117,0.15);color:#1D9E75;">HSSR</span></td>
+      </tr>
+      <tr>
+        <td>East</td>
+        <td style="color:#1D9E75;font-weight:500;">7,890</td><td>4,140</td><td>3,850</td><td>3,010</td><td>490</td>
+        <td><span class="wpill" style="background:rgba(29,158,117,0.15);color:#1D9E75;">HSSR</span></td>
+      </tr>
+      <tr>
+        <td>South West</td>
+        <td>2,900</td><td style="color:#534AB7;font-weight:500;">4,400</td><td>2,800</td><td>3,800</td><td>520</td>
+        <td><span class="wpill" style="background:rgba(83,74,183,0.15);color:#534AB7;">HPU</span></td>
+      </tr>
+      <tr>
+        <td>South</td>
+        <td style="color:#1D9E75;font-weight:500;">2,900</td><td>2,000</td><td>1,200</td><td>1,180</td><td>720</td>
+        <td><span class="wpill" style="background:rgba(29,158,117,0.15);color:#1D9E75;">HSSR</span></td>
+      </tr>
+      <tr style="border-top:1px solid rgba(255,255,255,0.12);">
+        <td><strong>Total</strong></td>
+        <td style="color:#1D9E75;"><strong>42,850</strong></td>
+        <td style="color:#534AB7;"><strong>32,140</strong></td>
+        <td style="color:#D85A30;"><strong>26,470</strong></td>
+        <td style="color:#BA7517;"><strong>18,100</strong></td>
+        <td style="color:#888780;"><strong>3,820</strong></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="nota-box">
+    <strong>What is NOTA?</strong> "None of the Above" — voters who reject all candidates. NOTA cannot win a seat but signals dissatisfaction. Hayaland recorded <strong>3,820 NOTA votes</strong> (3.1%) — highest in South (720) and South West (520). NOTA votes are counted and reported but do not affect seat allocation.
+  </div>
+</section>
+
+<footer>
+  <strong>Hayaland Election Commission</strong> &nbsp;·&nbsp; Official Results Portal &nbsp;·&nbsp; General Election 2026 &nbsp;·&nbsp; All results certified and final.
+</footer>
+
+</body>
+</html>
